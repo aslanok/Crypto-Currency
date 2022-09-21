@@ -151,6 +151,7 @@
                         <outlet property="satButton" destination="s23-OK-U1K" id="NTa-xK-qZC"/>
                         <outlet property="tableView" destination="OMj-Xq-CUH" id="qcn-8B-FPD"/>
                         <outlet property="totalTextField" destination="u2l-nA-fwV" id="jQZ-tL-I2l"/>
+                        <outlet property="window" destination="8bC-Xf-vdC" id="R4f-4H-90h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -9,6 +9,8 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
+    @IBOutlet var window: UIView!
+    
     var currentCoinPrice : Double = 1
     
     var greenColor = UIColor(red: 77/255.0, green: 199/255.0, blue: 152/255.0, alpha: 1)
@@ -34,6 +36,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.dataSource = self
         coinMiktarTextField.delegate = self
         // Do any additional setup after loading the view.
+        window.keyboardSlide()
         getData()
     }
     

@@ -22,6 +22,7 @@
 		FA8FF32028DA4CDB0047B76C /* AppSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8FF31F28DA4CDB0047B76C /* AppSetting.swift */; };
 		FA8FF32228DA4D680047B76C /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8FF32128DA4D680047B76C /* ApiService.swift */; };
 		FA8FF32628DA5F590047B76C /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8FF32528DA5F590047B76C /* TableViewCell.swift */; };
+		FAD5CD5B28DB1DF500FFFB99 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD5CD5A28DB1DF500FFFB99 /* UIViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		FA8FF31F28DA4CDB0047B76C /* AppSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSetting.swift; sourceTree = "<group>"; };
 		FA8FF32128DA4D680047B76C /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		FA8FF32528DA5F590047B76C /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		FAD5CD5A28DB1DF500FFFB99 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 				FA8FF2F328D9F0A10047B76C /* Info.plist */,
 				FA8FF2F028D9F0A10047B76C /* LaunchScreen.storyboard */,
 				FA8FF2EE28D9F0A10047B76C /* Assets.xcassets */,
+				FAD5CD5A28DB1DF500FFFB99 /* UIViewExtension.swift */,
 			);
 			path = Futurance_testcase;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAD5CD5B28DB1DF500FFFB99 /* UIViewExtension.swift in Sources */,
 				FA8FF31828DA29110047B76C /* Response.swift in Sources */,
 				FA8FF2EA28D9F0990047B76C /* ViewController.swift in Sources */,
 				FA8FF32028DA4CDB0047B76C /* AppSetting.swift in Sources */,
