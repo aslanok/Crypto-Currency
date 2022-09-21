@@ -7,12 +7,16 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+    
+    var currentCoinPrice : Double = 1
     
     var greenColor = UIColor(red: 77/255.0, green: 199/255.0, blue: 152/255.0, alpha: 1)
     var redColor = UIColor(red: 241/255.0, green: 105/255.0, blue: 99/255.0, alpha: 1)
     
-    
+
+    @IBOutlet weak var totalTextField: UITextField!
+    @IBOutlet weak var coinMiktarTextField: UITextField!
     @IBOutlet weak var lowLabel: UILabel!
     @IBOutlet weak var highLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -22,12 +26,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeKeyboard))
+        //view.addGestureRecognizer(gestureRecognizer)
         girisAyarları()
         altButton.backgroundColor = greenColor
         tableView.delegate = self
         tableView.dataSource = self
+        coinMiktarTextField.delegate = self
         // Do any additional setup after loading the view.
         getData()
+    }
+    
+    @objc func closeKeyboard() {
+        view.endEditing(true)
     }
     
     func girisAyarları(){
@@ -50,6 +61,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let myStr = Double(textField.text!) {
+            let myquantity = myStr
+            print(myquantity * currentCoinPrice)
+            let total = String(myquantity * currentCoinPrice)
+            totalTextField.text = total
+        }
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return currencyData.count
@@ -66,7 +86,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let myData = currencyData[indexPath.row]
         highLabel.text = myData.highPrice
         lowLabel.text = myData.lowPrice
-        
+        if let cost = Double(myData.price) {
+            currentCoinPrice = cost
+            print(currentCoinPrice)
+        }
     }
     
     
@@ -86,3 +109,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
 }
 
+extension String {
+    func toDouble() -> Double? {
+        return NumberFormatter().number(from: self)?.doubleValue
+    }
+}

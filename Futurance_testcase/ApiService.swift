@@ -21,7 +21,7 @@ class ApiService {
                     print(item)                        //print(item)
                     DispatchQueue.main.async {
                         //let coinName = item.symbol
-                        let price = "\(item.lastPrice) TRY"
+                        let price = "\(item.lastPrice)"
                         let firstName = item.symbol.prefix(item.symbol.count - baseSymbol.count)
                         let combineName = "\(firstName)/\(baseSymbol)"
                         let lowerPrice = item.lowPrice

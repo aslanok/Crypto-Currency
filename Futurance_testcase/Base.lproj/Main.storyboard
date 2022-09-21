@@ -37,13 +37,13 @@
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u2l-nA-fwV">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Total" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u2l-nA-fwV">
                                 <rect key="frame" x="20" y="748" width="374" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WBb-tu-Vgb">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Miktar" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WBb-tu-Vgb">
                                 <rect key="frame" x="20" y="706" width="374" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -145,10 +145,12 @@
                     <connections>
                         <outlet property="alButton" destination="HI4-ef-oXW" id="Oxj-Ba-lQc"/>
                         <outlet property="altButton" destination="m3D-4r-nyj" id="aiA-mf-usR"/>
+                        <outlet property="coinMiktarTextField" destination="WBb-tu-Vgb" id="oh4-Xh-xEW"/>
                         <outlet property="highLabel" destination="Hbq-Q9-zRP" id="FAh-38-lfM"/>
                         <outlet property="lowLabel" destination="ujB-PW-174" id="odX-w3-8fz"/>
                         <outlet property="satButton" destination="s23-OK-U1K" id="NTa-xK-qZC"/>
                         <outlet property="tableView" destination="OMj-Xq-CUH" id="qcn-8B-FPD"/>
+                        <outlet property="totalTextField" destination="u2l-nA-fwV" id="jQZ-tL-I2l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
