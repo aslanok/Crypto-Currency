@@ -9,9 +9,16 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
+    var newbakiyeString : String = ""
+    @IBOutlet weak var bakiyeLabel: UILabel!
+    @IBOutlet weak var coinAlButton: UIButton!
     @IBOutlet var window: UIView!
-    
+    var total : String = ""
+    var bakiyeString : String = ""
+    var myWallet : [String : Double] = ["TRY" : 2000.0]
     var currentCoinPrice : Double = 1
+    var currentCoinName : String = ""
+    var alEtkili = true
     
     var greenColor = UIColor(red: 77/255.0, green: 199/255.0, blue: 152/255.0, alpha: 1)
     var redColor = UIColor(red: 241/255.0, green: 105/255.0, blue: 99/255.0, alpha: 1)
@@ -22,7 +29,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var lowLabel: UILabel!
     @IBOutlet weak var highLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var altButton: UIButton!
     @IBOutlet weak var alButton: UIButton!
     @IBOutlet weak var satButton: UIButton!
     
@@ -31,7 +37,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(closeKeyboard))
         //view.addGestureRecognizer(gestureRecognizer)
         girisAyarları()
-        altButton.backgroundColor = greenColor
         tableView.delegate = self
         tableView.dataSource = self
         coinMiktarTextField.delegate = self
@@ -40,16 +45,40 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         getData()
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let myStr = Double(textField.text!) {
+            let myquantity = myStr
+            //print(myquantity * currentCoinPrice)
+            total = String(myquantity * currentCoinPrice)
+            totalTextField.text = total
+        }
+        closeKeyboard()
+        return true
+    }
+    
+    /*
+    @IBAction func actionTriggered(_ sender: UITextField) {
+        if let myStr = Double(textField.text!) {
+            let myquantity = myStr
+            print(myquantity * currentCoinPrice)
+            let total = String(myquantity * currentCoinPrice)
+            totalTextField.text = total
+        
+    }
+     */
+    
     @objc func closeKeyboard() {
         view.endEditing(true)
     }
     
     func girisAyarları(){
+        coinAlButton.backgroundColor = greenColor
         alButton.backgroundColor = greenColor
         satButton.backgroundColor = .gray
         alButton.layer.cornerRadius = alButton.frame.height/2
         satButton.layer.cornerRadius = satButton.frame.height/2
-        altButton.layer.cornerRadius = altButton.frame.height/2
+        coinAlButton.layer.cornerRadius = coinAlButton.frame.height/2
+        alEtkili = true
     }
     
     func getData() {
@@ -57,25 +86,36 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if result != nil {
                 DispatchQueue.main.async {
 //                    print("get datadaki result : \(result?[0].name)")
-                    print(result as Any)
+                    //print(result as Any)
                     self.tableView.reloadData()
                 }
             }
         }
     }
     
+    /*
     func textFieldDidEndEditing(_ textField: UITextField) {
         if let myStr = Double(textField.text!) {
             let myquantity = myStr
-            print(myquantity * currentCoinPrice)
+            //print(myquantity * currentCoinPrice)
             let total = String(myquantity * currentCoinPrice)
             totalTextField.text = total
         }
     }
-    
+*/
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return currencyData.count
+    }
+    
+    
+    @IBAction func editChange(_ sender: UITextField) {
+        if let myStr = Double(sender.text!) {
+            let myquantity = myStr
+            //print(myquantity * currentCoinPrice)
+            let total = String(myquantity * currentCoinPrice)
+            totalTextField.text = total
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -91,26 +131,91 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         lowLabel.text = myData.lowPrice
         if let cost = Double(myData.price) {
             currentCoinPrice = cost
-            print(currentCoinPrice)
+            //print(currentCoinPrice)
         }
+        currentCoinName = myData.soloCoinName
+        if alEtkili == true {
+            coinAlButton.setTitle("\(currentCoinName) AL", for: UIControl.State.normal)
+        } else {
+            coinAlButton.setTitle("\(currentCoinName) SAT", for: UIControl.State.normal)
+        }
+        //
+        if let coinquantity = Double(coinMiktarTextField.text!) {
+            total = String(coinquantity * currentCoinPrice)
+            totalTextField.text = total
+        }
+        
     }
     
     
     @IBAction func alButtonTapped(_ sender: UIButton) {
-        altButton.backgroundColor = greenColor
+        coinAlButton.backgroundColor = greenColor
         satButton.backgroundColor = .gray
         alButton.backgroundColor = greenColor
+        alEtkili = true
+        coinAlButton.setTitle("\(currentCoinName) AL", for: UIControl.State.normal)
     }
-    
     
     @IBAction func satButtonTapped(_ sender: UIButton) {
-        altButton.backgroundColor = redColor
+        coinAlButton.backgroundColor = redColor
         satButton.backgroundColor = redColor
         alButton.backgroundColor = .gray
+        alEtkili = false
+        coinAlButton.setTitle("\(currentCoinName) SAT", for: UIControl.State.normal)
     }
     
     
+    
+    @IBAction func coinAlButtonTapped(_ sender: UIButton) {
+        if alEtkili == true {
+            if let alinanCoinTutari = Double(totalTextField.text!) {
+                if myWallet["TRY"]! < alinanCoinTutari {
+                    print("coin alınamaz")
+                    uyariVer(mesaj: "Yetersiz Bakiye")
+                }
+                else {
+                    //print(alinanCoinTutari)
+                    myWallet[currentCoinName] = alinanCoinTutari
+                    myWallet["TRY"] = myWallet["TRY"]! - alinanCoinTutari
+                    bakiyeLabel.text = "\(coinMiktarTextField.text!) \(currentCoinName), \(alinanCoinTutari) TRY  "
+                }
+            }
+            //print(myWallet["TRY"]!)
+            /*
+            for (coin, price) in myWallet {
+                newbakiyeString = "\(price) \(coin) "
+                bakiyeString.append(contentsOf: newbakiyeString)
+            }
+            bakiyeLabel.text = bakiyeString
+            print(bakiyeString)
+            print("*****")
+             */
+        }
+        else if alEtkili == false {
+            if let alinanCoinTutari = Double(totalTextField.text!) {
+                //print(alinanCoinTutari)
+                myWallet[currentCoinName] = alinanCoinTutari
+                myWallet["TRY"] = myWallet["TRY"]! + alinanCoinTutari
+            }
+            //print(myWallet["TRY"]!)
+            bakiyeLabel.text = String(myWallet["TRY"]!)
+        }
+    }
+    
+    
+    func uyariVer(mesaj : String) {
+            let uyariMesaji : UIAlertController = UIAlertController(title: "Uyarı Mesajı!", message: mesaj, preferredStyle: UIAlertController.Style.alert)
+            let okButton : UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) { UIAlertAction in
+                //Ok butonuna basınca olacaklar
+                print("ok butonuna tıklandı")
+            }
+            
+            uyariMesaji.addAction(okButton)
+            // burda kullaniciya uyari mesajı sunduk, animasyonlu mu olsun evet, tamamlanınca bir şey olsun mu hayır olmasın
+            self.present(uyariMesaji, animated: true, completion: nil)
+        }
 }
+
 
 extension String {
     func toDouble() -> Double? {

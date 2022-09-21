@@ -12,6 +12,7 @@ struct CurrencyModel {
     var price : String
     var lowPrice : String
     var highPrice : String
+    var soloCoinName : String
 }
 
 var currencyData : [CurrencyModel] = []

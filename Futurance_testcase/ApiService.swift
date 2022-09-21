@@ -26,7 +26,7 @@ class ApiService {
                         let combineName = "\(firstName)/\(baseSymbol)"
                         let lowerPrice = item.lowPrice
                         let higherPrice = item.highPrice
-                        let curr = CurrencyModel(name: String(combineName), price: price, lowPrice: lowerPrice, highPrice: higherPrice )
+                        let curr = CurrencyModel(name: String(combineName), price: price, lowPrice: lowerPrice, highPrice: higherPrice, soloCoinName: String(firstName))
                         currencyData.append(curr)
                     }
                 }
