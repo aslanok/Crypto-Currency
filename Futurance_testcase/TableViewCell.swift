@@ -11,6 +11,7 @@ class TableViewCell: UITableViewCell {
 
     @IBOutlet weak var coinNameLabel: UILabel!
     @IBOutlet weak var coinPriceLabel: UILabel!
+    @IBOutlet weak var cellView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

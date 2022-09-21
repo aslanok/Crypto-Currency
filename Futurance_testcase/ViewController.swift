@@ -40,10 +40,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.delegate = self
         tableView.dataSource = self
         coinMiktarTextField.delegate = self
+        
+        //tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
         // Do any additional setup after loading the view.
         window.keyboardSlide()
         getData()
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let myStr = Double(textField.text!) {
@@ -72,6 +80,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func girisAyarları(){
+        totalTextField.isUserInteractionEnabled = false
         coinAlButton.backgroundColor = greenColor
         alButton.backgroundColor = greenColor
         satButton.backgroundColor = .gray
@@ -109,7 +118,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
-    @IBAction func editChange(_ sender: UITextField) {
+    @IBAction func editChange(_ sender: UITextField){
+        
+        if sender.text == "" {
+            totalTextField.text = "0"
+        }
+        
         if let myStr = Double(sender.text!) {
             let myquantity = myStr
             //print(myquantity * currentCoinPrice)
@@ -121,8 +135,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! TableViewCell
         cell.setup(with: currencyData[indexPath.row])
+        cell.cellView.layer.cornerRadius = cell.cellView.frame.height / 2
+        
         return cell
     }
+    
     
     //cell'e basınca çalışıyor
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -174,10 +191,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     uyariVer(mesaj: "Yetersiz Bakiye")
                 }
                 else {
-                    //print(alinanCoinTutari)
-                    myWallet[currentCoinName] = alinanCoinTutari
-                    myWallet["TRY"] = myWallet["TRY"]! - alinanCoinTutari
-                    bakiyeLabel.text = "\(coinMiktarTextField.text!) \(currentCoinName), \(alinanCoinTutari) TRY  "
+                    if currentCoinName == "" {
+                        uyariVer(mesaj: "Coin Seçmediniz")
+                    }else {
+                        print("alıyoruz")
+                        //print(alinanCoinTutari)
+                        myWallet[currentCoinName] = alinanCoinTutari
+                        myWallet["TRY"] = myWallet["TRY"]! - alinanCoinTutari
+                        bakiyeLabel.text = "\(coinMiktarTextField.text!) \(currentCoinName), \(alinanCoinTutari) TRY  "
+                    }
                 }
             }
             //print(myWallet["TRY"]!)
@@ -193,12 +215,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         else if alEtkili == false {
             if let alinanCoinTutari = Double(totalTextField.text!) {
-                //print(alinanCoinTutari)
                 myWallet[currentCoinName] = alinanCoinTutari
                 myWallet["TRY"] = myWallet["TRY"]! + alinanCoinTutari
             }
-            //print(myWallet["TRY"]!)
-            bakiyeLabel.text = String(myWallet["TRY"]!)
+            bakiyeLabel.text = "\(myWallet["TRY"]!) TRY"
         }
     }
     
@@ -206,7 +226,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func uyariVer(mesaj : String) {
             let uyariMesaji : UIAlertController = UIAlertController(title: "Uyarı Mesajı!", message: mesaj, preferredStyle: UIAlertController.Style.alert)
             let okButton : UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) { UIAlertAction in
-                //Ok butonuna basınca olacaklar
                 print("ok butonuna tıklandı")
             }
             
