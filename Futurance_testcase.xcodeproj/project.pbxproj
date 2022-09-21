@@ -16,6 +16,12 @@
 		FA8FF2FD28D9F0A20047B76C /* Futurance_testcaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8FF2FC28D9F0A20047B76C /* Futurance_testcaseTests.swift */; };
 		FA8FF30728D9F0A20047B76C /* Futurance_testcaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8FF30628D9F0A20047B76C /* Futurance_testcaseUITests.swift */; };
 		FA8FF30928D9F0A20047B76C /* Futurance_testcaseUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8FF30828D9F0A20047B76C /* Futurance_testcaseUITestsLaunchTests.swift */; };
+		FA8FF31828DA29110047B76C /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8FF31728DA29110047B76C /* Response.swift */; };
+		FA8FF31A28DA31690047B76C /* CoinManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8FF31928DA31690047B76C /* CoinManager.swift */; };
+		FA8FF31C28DA48990047B76C /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8FF31B28DA48990047B76C /* CurrencyModel.swift */; };
+		FA8FF32028DA4CDB0047B76C /* AppSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8FF31F28DA4CDB0047B76C /* AppSetting.swift */; };
+		FA8FF32228DA4D680047B76C /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8FF32128DA4D680047B76C /* ApiService.swift */; };
+		FA8FF32628DA5F590047B76C /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8FF32528DA5F590047B76C /* TableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +55,12 @@
 		FA8FF30228D9F0A20047B76C /* Futurance_testcaseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Futurance_testcaseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA8FF30628D9F0A20047B76C /* Futurance_testcaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Futurance_testcaseUITests.swift; sourceTree = "<group>"; };
 		FA8FF30828D9F0A20047B76C /* Futurance_testcaseUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Futurance_testcaseUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FA8FF31728DA29110047B76C /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		FA8FF31928DA31690047B76C /* CoinManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinManager.swift; sourceTree = "<group>"; };
+		FA8FF31B28DA48990047B76C /* CurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModel.swift; sourceTree = "<group>"; };
+		FA8FF31F28DA4CDB0047B76C /* AppSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSetting.swift; sourceTree = "<group>"; };
+		FA8FF32128DA4D680047B76C /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		FA8FF32528DA5F590047B76C /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,11 +113,17 @@
 			children = (
 				FA8FF2E528D9F0990047B76C /* AppDelegate.swift */,
 				FA8FF2E728D9F0990047B76C /* SceneDelegate.swift */,
-				FA8FF2E928D9F0990047B76C /* ViewController.swift */,
 				FA8FF2EB28D9F0990047B76C /* Main.storyboard */,
-				FA8FF2EE28D9F0A10047B76C /* Assets.xcassets */,
-				FA8FF2F028D9F0A10047B76C /* LaunchScreen.storyboard */,
+				FA8FF2E928D9F0990047B76C /* ViewController.swift */,
+				FA8FF32128DA4D680047B76C /* ApiService.swift */,
+				FA8FF32528DA5F590047B76C /* TableViewCell.swift */,
+				FA8FF31B28DA48990047B76C /* CurrencyModel.swift */,
+				FA8FF31728DA29110047B76C /* Response.swift */,
+				FA8FF31928DA31690047B76C /* CoinManager.swift */,
+				FA8FF31F28DA4CDB0047B76C /* AppSetting.swift */,
 				FA8FF2F328D9F0A10047B76C /* Info.plist */,
+				FA8FF2F028D9F0A10047B76C /* LaunchScreen.storyboard */,
+				FA8FF2EE28D9F0A10047B76C /* Assets.xcassets */,
 			);
 			path = Futurance_testcase;
 			sourceTree = "<group>";
@@ -258,9 +276,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA8FF31828DA29110047B76C /* Response.swift in Sources */,
 				FA8FF2EA28D9F0990047B76C /* ViewController.swift in Sources */,
+				FA8FF32028DA4CDB0047B76C /* AppSetting.swift in Sources */,
 				FA8FF2E628D9F0990047B76C /* AppDelegate.swift in Sources */,
 				FA8FF2E828D9F0990047B76C /* SceneDelegate.swift in Sources */,
+				FA8FF32628DA5F590047B76C /* TableViewCell.swift in Sources */,
+				FA8FF31C28DA48990047B76C /* CurrencyModel.swift in Sources */,
+				FA8FF32228DA4D680047B76C /* ApiService.swift in Sources */,
+				FA8FF31A28DA31690047B76C /* CoinManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
