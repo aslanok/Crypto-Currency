@@ -99,7 +99,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         alEtkili = false
         coinAlButton.setTitle("\(currentCoinName) SAT", for: UIControl.State.normal)
     }
-        
+    
     @IBAction func coinAlButtonTapped(_ sender: UIButton) {
         if alEtkili == true {
             if let alinanCoinTutari = Double(totalTextField.text!) {
@@ -122,11 +122,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
                             }
                         }
                          */
-                        print("alıyoruz")
+                        //print("alıyoruz")
                         //print(alinanCoinTutari)
-                        myWallet[currentCoinName] = Double(coinMiktarTextField.text!)
-                        myWallet["TRY"] = myWallet["TRY"]! - alinanCoinTutari
-                        myWallet["TRY"] = (myWallet["TRY"]! * 100000) / 100000
+                        if myWallet.keys.contains(currentCoinName){
+                            myWallet[currentCoinName] = myWallet[currentCoinName]! + Double(coinMiktarTextField.text!)!
+                            myWallet["TRY"] = myWallet["TRY"]! - alinanCoinTutari
+                            myWallet["TRY"] = (myWallet["TRY"]! * 100000) / 100000
+                        }else {
+                            myWallet[currentCoinName] = Double(coinMiktarTextField.text!)
+                            myWallet["TRY"] = myWallet["TRY"]! - alinanCoinTutari
+                            myWallet["TRY"] = (myWallet["TRY"]! * 100000) / 100000
+                        }
                         // ALTTAKİ SATIR EĞER SON İŞLEM BAKİYE OLARAK GÖZÜKECEKSE AKTİF HALE GELECEK
                         //bakiyeLabel.text = "\(coinMiktarTextField.text!) \(currentCoinName), \(alinanCoinTutari) TRY  "
                     }
@@ -146,10 +152,43 @@ class ViewController: UIViewController, UITextFieldDelegate {
         else if alEtkili == false {
             if let alinanCoinTutari = Double(totalTextField.text!) {
                 //myWallet[currentCoinName] = alinanCoinTutari
-                myWallet["TRY"] = myWallet["TRY"]! + alinanCoinTutari
+                /*
+                 if myWallet.keys.contains(currentCoinName){
+                     myWallet[currentCoinName] = myWallet[currentCoinName]! + Double(coinMiktarTextField.text!)!
+                     myWallet["TRY"] = myWallet["TRY"]! - alinanCoinTutari
+                     myWallet["TRY"] = (myWallet["TRY"]! * 100000) / 100000
+                 }else {
+                     myWallet[currentCoinName] = Double(coinMiktarTextField.text!)
+                     myWallet["TRY"] = myWallet["TRY"]! - alinanCoinTutari
+                     myWallet["TRY"] = (myWallet["TRY"]! * 100000) / 100000
+                 }
+                 */
+                if myWallet.keys.contains(currentCoinName) {
+                    myWallet[currentCoinName] = myWallet[currentCoinName]! - Double(coinMiktarTextField.text!)!
+                    myWallet["TRY"] = myWallet["TRY"]! + alinanCoinTutari
+                } else {
+                    uyariVer(mesaj: "Bakiyenizde bu coin bulunmamaktadır. Satmak için önce coin'i satın almalısınız.")
+                }
+                
+                //myWallet["TRY"] = myWallet["TRY"]! + alinanCoinTutari
             }
-            bakiyeLabel.text = "\(myWallet["TRY"]!) TRY"
+            //bakiyeLabel.text = "\(myWallet["TRY"]!) TRY"
             bakiyeString = ""
+            for (coin, price) in myWallet {
+                if price == 0 {
+                    myWallet.removeValue(forKey: coin)
+                }else {
+                    newbakiyeString = "\(price) \(coin) "
+                    bakiyeString.append(contentsOf: newbakiyeString)
+                }
+                /*
+                newbakiyeString = "\(price) \(coin) "
+                bakiyeString.append(contentsOf: newbakiyeString)
+                 */
+            }
+            bakiyeLabel.text = bakiyeString
+            print("Bakiye Stringi : \(bakiyeString)")
+            print("*****")
         }
     }
     
