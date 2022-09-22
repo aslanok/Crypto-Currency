@@ -109,7 +109,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 else {
                     if currentCoinName == "" {
                         uyariVer(mesaj: "Coin Seçmediniz")
-                    
                     }else {
                         /*
                         for (name) in myWallet.keys {
@@ -121,7 +120,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
                                 myWallet["TRY"] = myWallet["TRY"]! - alinanCoinTutari
                             }
                         }
-                         
                          */
                         print("alıyoruz")
                         //print(alinanCoinTutari)
@@ -142,8 +140,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
             bakiyeLabel.text = bakiyeString
             print("Bakiye Stringi : \(bakiyeString)")
             print("*****")
-            
-            
         }
         else if alEtkili == false {
             if let alinanCoinTutari = Double(totalTextField.text!) {

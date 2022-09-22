@@ -21,6 +21,13 @@ class ApiService {
                     print(item)                        //print(item)
                     DispatchQueue.main.async {
                         //let coinName = item.symbol
+                        /*
+                        if let duzenlenecekPrice = Double(item.lastPrice) {
+                            duzenlenecekPrice = (duzenlenecekPrice * 100000) / 100000
+                        }
+                         */
+                        
+                        
                         let price = "\(item.lastPrice)"
                         let firstName = item.symbol.prefix(item.symbol.count - baseSymbol.count)
                         let combineName = "\(firstName)/\(baseSymbol)"
