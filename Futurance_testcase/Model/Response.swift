@@ -12,6 +12,7 @@ struct Response: Codable {
     let lastPrice: String
     let highPrice : String
     let lowPrice : String
+    let priceChangePercent : String
 }
 
 

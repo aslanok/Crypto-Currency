@@ -21,8 +21,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var currentCoinName : String = ""
     var alEtkili = true
     
-    var greenColor = UIColor(red: 77/255.0, green: 199/255.0, blue: 152/255.0, alpha: 1)
-    var redColor = UIColor(red: 241/255.0, green: 105/255.0, blue: 99/255.0, alpha: 1)
     @IBOutlet weak var totalTextField: UITextField!
     @IBOutlet weak var coinMiktarTextField: UITextField!
     @IBOutlet weak var lowLabel: UILabel!
@@ -51,8 +49,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func girisAyarları(){
         totalTextField.isUserInteractionEnabled = false
-        coinAlButton.backgroundColor = greenColor
-        alButton.backgroundColor = greenColor
+        coinAlButton.backgroundColor = K.greenColor
+        alButton.backgroundColor = K.greenColor
         satButton.backgroundColor = .gray
         alButton.layer.cornerRadius = alButton.frame.height/2
         satButton.layer.cornerRadius = satButton.frame.height/2
@@ -61,7 +59,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func getData() {
-        ApiService().loadTickerPrice(baseSymbol: appSetting.baseSymbol) { result in
+        ApiService().loadPrice(baseSymbol: appSetting.baseSymbol) { result in
             if result != nil {
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
@@ -84,16 +82,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func alButtonTapped(_ sender: UIButton) {
-        coinAlButton.backgroundColor = greenColor
+        coinAlButton.backgroundColor = K.greenColor
         satButton.backgroundColor = .gray
-        alButton.backgroundColor = greenColor
+        alButton.backgroundColor = K.greenColor
         alEtkili = true
         coinAlButton.setTitle("\(currentCoinName) AL", for: UIControl.State.normal)
     }
     
     @IBAction func satButtonTapped(_ sender: UIButton) {
-        coinAlButton.backgroundColor = redColor
-        satButton.backgroundColor = redColor
+        coinAlButton.backgroundColor = K.redColor
+        satButton.backgroundColor = K.redColor
         alButton.backgroundColor = .gray
         alEtkili = false
         coinAlButton.setTitle("\(currentCoinName) SAT", for: UIControl.State.normal)
@@ -164,9 +162,4 @@ class ViewController: UIViewController, UITextFieldDelegate {
 }
 
 
-extension String {
-    func toDouble() -> Double? {
-        return NumberFormatter().number(from: self)?.doubleValue
-    }
-}
 

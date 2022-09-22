@@ -8,10 +8,11 @@
 import UIKit
 
 class TableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var coinNameLabel: UILabel!
     @IBOutlet weak var coinPriceLabel: UILabel!
     @IBOutlet weak var cellView: UIView!
+    @IBOutlet weak var priceChangeLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,7 +26,21 @@ class TableViewCell: UITableViewCell {
     }
     
     func setup(with currency : CurrencyModel) {
+        
+        if let coinChangingPrice = Double(currency.coinPriceChange) {
+            if coinChangingPrice < 0 {
+                coinPriceLabel.textColor = K.redColor
+                priceChangeLabel.textColor = K.redColor
+                priceChangeLabel.text =  "% \(currency.coinPriceChange)"
+            } else {
+                priceChangeLabel.text =  "% +\(currency.coinPriceChange)"
+                coinPriceLabel.textColor = K.greenColor
+                priceChangeLabel.textColor = K.greenColor
+            }
+        }
+        
         coinNameLabel.text = currency.name
+        
         coinPriceLabel.text = "\(currency.price) TRY"
     }
 
