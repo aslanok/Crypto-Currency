@@ -26,7 +26,7 @@ class TableViewCell: UITableViewCell {
     
     func setup(with currency : CurrencyModel) {
         coinNameLabel.text = currency.name
-        coinPriceLabel.text = currency.price
+        coinPriceLabel.text = "\(currency.price) TRY"
     }
 
 }

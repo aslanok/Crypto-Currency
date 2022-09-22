@@ -41,7 +41,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.dataSource = self
         coinMiktarTextField.delegate = self
         
-        //tableView.separatorStyle = .none
+        tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         // Do any additional setup after loading the view.
         window.keyboardSlide()
@@ -49,7 +49,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 60
     }
     
     
@@ -122,8 +122,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if sender.text == "" {
             totalTextField.text = "0"
-        }
-        
+        }        
         if let myStr = Double(sender.text!) {
             let myquantity = myStr
             //print(myquantity * currentCoinPrice)
@@ -135,7 +134,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! TableViewCell
         cell.setup(with: currencyData[indexPath.row])
-        cell.cellView.layer.cornerRadius = cell.cellView.frame.height / 2
+        cell.cellView.layer.cornerRadius = 20
         
         return cell
     }
