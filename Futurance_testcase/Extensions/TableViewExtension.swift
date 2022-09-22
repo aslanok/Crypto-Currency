@@ -23,8 +23,18 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     //cell'e basınca çalışıyor
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let myData = currencyData[indexPath.row]
-        highLabel.text = myData.highPrice
-        lowLabel.text = myData.lowPrice
+        if var newCoinhighFiyat = Double(myData.highPrice) {
+            newCoinhighFiyat = (newCoinhighFiyat * 100000) / 100000
+            highLabel.text = "\(newCoinhighFiyat)"
+        }
+        if var newCoinlowFiyat = Double(myData.lowPrice) {
+            newCoinlowFiyat = (newCoinlowFiyat * 100000) / 100000
+            lowLabel.text = "\(newCoinlowFiyat)"
+        }
+        
+        
+        //highLabel.text = myData.highPrice
+        //lowLabel.text = myData.lowPrice
         if let cost = Double(myData.price) {
             currentCoinPrice = cost
             //print(currentCoinPrice)
@@ -40,6 +50,8 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
             total = String(coinquantity * currentCoinPrice)
             totalTextField.text = total
         }
+        
+        miktarLabeli.text = "\(currentCoinName) Miktari"
         
     }
     

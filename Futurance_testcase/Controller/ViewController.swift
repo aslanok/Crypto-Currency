@@ -21,6 +21,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var currentCoinName : String = ""
     var alEtkili = true
     
+    @IBOutlet weak var miktarLabeli: UILabel!
     @IBOutlet weak var totalTextField: UITextField!
     @IBOutlet weak var coinMiktarTextField: UITextField!
     @IBOutlet weak var lowLabel: UILabel!
@@ -48,6 +49,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func girisAyarları(){
+        miktarLabeli.textColor = .darkGray
         totalTextField.isUserInteractionEnabled = false
         coinAlButton.backgroundColor = K.greenColor
         alButton.backgroundColor = K.greenColor
@@ -76,8 +78,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if let myStr = Double(sender.text!) {
             let myquantity = myStr
             //print(myquantity * currentCoinPrice)
-            let total = String(myquantity * currentCoinPrice)
-            totalTextField.text = total
+            var total = myquantity * currentCoinPrice
+            total = (total * 10000) / 10000
+            totalTextField.text = "\(total)"
         }
     }
     
@@ -121,8 +124,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
                          */
                         print("alıyoruz")
                         //print(alinanCoinTutari)
-                        myWallet[currentCoinName] = alinanCoinTutari
+                        myWallet[currentCoinName] = Double(coinMiktarTextField.text!)
                         myWallet["TRY"] = myWallet["TRY"]! - alinanCoinTutari
+                        myWallet["TRY"] = (myWallet["TRY"]! * 100000) / 100000
                         // ALTTAKİ SATIR EĞER SON İŞLEM BAKİYE OLARAK GÖZÜKECEKSE AKTİF HALE GELECEK
                         //bakiyeLabel.text = "\(coinMiktarTextField.text!) \(currentCoinName), \(alinanCoinTutari) TRY  "
                     }
@@ -141,10 +145,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         else if alEtkili == false {
             if let alinanCoinTutari = Double(totalTextField.text!) {
-                myWallet[currentCoinName] = alinanCoinTutari
+                //myWallet[currentCoinName] = alinanCoinTutari
                 myWallet["TRY"] = myWallet["TRY"]! + alinanCoinTutari
             }
             bakiyeLabel.text = "\(myWallet["TRY"]!) TRY"
+            bakiyeString = ""
         }
     }
     

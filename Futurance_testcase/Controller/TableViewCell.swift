@@ -9,6 +9,8 @@ import UIKit
 
 class TableViewCell: UITableViewCell {
     
+    var newCoinPrice : Double = 0.0
+    
     @IBOutlet weak var coinNameLabel: UILabel!
     @IBOutlet weak var coinPriceLabel: UILabel!
     @IBOutlet weak var cellView: UIView!
@@ -38,10 +40,12 @@ class TableViewCell: UITableViewCell {
                 priceChangeLabel.textColor = K.greenColor
             }
         }
-        
+        if var newCoinFiyat = Double(currency.price) {
+            newCoinFiyat = (newCoinFiyat * 100000) / 100000
+            coinPriceLabel.text = "\(newCoinFiyat) TRY"
+        }
         coinNameLabel.text = currency.name
         
-        coinPriceLabel.text = "\(currency.price) TRY"
     }
 
 }

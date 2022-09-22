@@ -44,7 +44,7 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bakiye" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mxN-E4-WzZ">
-                                <rect key="frame" x="20" y="661" width="81" height="33"/>
+                                <rect key="frame" x="54" y="659" width="81" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -162,10 +162,23 @@
                                     <action selector="coinAlButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="692-ep-ksd"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icons8-wallet-50" translatesAutoresizingMaskIntoConstraints="NO" id="hgd-uC-pSw">
+                                <rect key="frame" x="20" y="657" width="31" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvs-Qg-LDK">
+                                <rect key="frame" x="230" y="713" width="126" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.89335616911300508" green="0.89335616911300508" blue="0.89335616911300508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="alButton" destination="HI4-ef-oXW" id="Oxj-Ba-lQc"/>
                         <outlet property="bakiyeLabel" destination="iVV-Id-sHp" id="SOz-xf-NHp"/>
@@ -173,6 +186,7 @@
                         <outlet property="coinMiktarTextField" destination="WBb-tu-Vgb" id="oh4-Xh-xEW"/>
                         <outlet property="highLabel" destination="Hbq-Q9-zRP" id="FAh-38-lfM"/>
                         <outlet property="lowLabel" destination="ujB-PW-174" id="odX-w3-8fz"/>
+                        <outlet property="miktarLabeli" destination="uvs-Qg-LDK" id="jPO-me-8Ct"/>
                         <outlet property="satButton" destination="s23-OK-U1K" id="NTa-xK-qZC"/>
                         <outlet property="tableView" destination="OMj-Xq-CUH" id="qcn-8B-FPD"/>
                         <outlet property="totalTextField" destination="u2l-nA-fwV" id="jQZ-tL-I2l"/>
@@ -185,6 +199,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="icons8-wallet-50" width="50" height="50"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
