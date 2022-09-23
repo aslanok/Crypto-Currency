@@ -24,11 +24,11 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let myData = currencyData[indexPath.row]
         if var newCoinhighFiyat = Double(myData.highPrice) {
-            newCoinhighFiyat = (newCoinhighFiyat * 100000) / 100000
+            newCoinhighFiyat = round(newCoinhighFiyat * 10000) / 10000
             highLabel.text = "\(newCoinhighFiyat)"
         }
         if var newCoinlowFiyat = Double(myData.lowPrice) {
-            newCoinlowFiyat = (newCoinlowFiyat * 100000) / 100000
+            newCoinlowFiyat = round(newCoinlowFiyat * 10000) / 10000
             lowLabel.text = "\(newCoinlowFiyat)"
         }
         
@@ -47,8 +47,9 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
         }
         //
         if let coinquantity = Double(coinMiktarTextField.text!) {
-            total = String(coinquantity * currentCoinPrice)
-            totalTextField.text = total
+            totalfor5decimal = coinquantity * currentCoinPrice
+            totalfor5decimal = round(totalfor5decimal * 10000)/10000
+            totalTextField.text = "\(totalfor5decimal)"
         }
         
         miktarLabeli.text = "\(currentCoinName) Miktari"

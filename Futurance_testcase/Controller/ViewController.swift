@@ -9,6 +9,7 @@ import UIKit
 
 
 class ViewController: UIViewController, UITextFieldDelegate {
+    var totalfor5decimal : Double = 0.0 //bu değişkene bakılcak
     var alinanCoinMiktari : Double = 0.0
     var newbakiyeString : String = ""
     @IBOutlet weak var bakiyeLabel: UILabel!
@@ -78,7 +79,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             let myquantity = myStr
             //print(myquantity * currentCoinPrice)
             var total = myquantity * currentCoinPrice
-            total = (total * 10000) / 10000
+            total = (round(total * 10000)/10000)
             totalTextField.text = "\(total)"
         }
     }
@@ -126,9 +127,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         if myWallet.keys.contains(currentCoinName){
                             myWallet[currentCoinName] = myWallet[currentCoinName]! + Double(coinMiktarTextField.text!)!
                             myWallet["TRY"] = myWallet["TRY"]! - alinanCoinTutari
+                            myWallet["TRY"] = Double(round(10000*myWallet["TRY"]!)/10000)
                         }else {
                             myWallet[currentCoinName] = Double(coinMiktarTextField.text!)
                             myWallet["TRY"] = myWallet["TRY"]! - alinanCoinTutari
+                            myWallet["TRY"] = Double(round(10000 * myWallet["TRY"]!)/10000)
                         }
                         // ALTTAKİ SATIR EĞER SON İŞLEM BAKİYE OLARAK GÖZÜKECEKSE AKTİF HALE GELECEK
                         //bakiyeLabel.text = "\(coinMiktarTextField.text!) \(currentCoinName), \(alinanCoinTutari) TRY  "
