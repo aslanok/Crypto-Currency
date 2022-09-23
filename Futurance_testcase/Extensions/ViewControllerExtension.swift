@@ -12,7 +12,7 @@ extension ViewController {
     func uyariVer(mesaj : String) {
             let uyariMesaji : UIAlertController = UIAlertController(title: "Uyarı Mesajı!", message: mesaj, preferredStyle: UIAlertController.Style.alert)
             let okButton : UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) { UIAlertAction in
-                print("ok butonuna tıklandı")
+                //print("ok butonuna tıklandı")
             }
             
             uyariMesaji.addAction(okButton)

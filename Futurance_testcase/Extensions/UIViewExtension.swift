@@ -14,6 +14,7 @@ extension UIView {
         NotificationCenter.default.addObserver(self , selector: #selector(keyboardChange(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
+    //burda yazdığım fonksiyon sayesinde kullanıcı klavyesi açıldığında diğer ekran elemanlarını kaydıracağız
     @objc func keyboardChange(_ notification : NSNotification ){
         //this time is about sliding of Keyboard
         let changeTime = notification.userInfo![UIResponder.keyboardAnimationDurationUserInfoKey] as! Double

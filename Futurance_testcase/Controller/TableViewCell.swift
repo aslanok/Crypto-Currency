@@ -23,13 +23,11 @@ class TableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
         // Configure the view for the selected state
     }
     
     // apiden dönen coinlerin düzenini burda yapıyoruz
     func setup(with currency : CurrencyModel) {
-        
         if let coinChangingPrice = Double(currency.coinPriceChange) {
             if coinChangingPrice < 0 {
                 coinPriceLabel.textColor = K.redColor

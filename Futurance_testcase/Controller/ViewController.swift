@@ -61,8 +61,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func getData() {
-        // kullanıcı istediği coini burda mainCoin yapabilir
-        WebService().loadPrice(mainCoin: "TRY") { result in
+        // kullanıcı istediği coini burda mainCoin yapabilir. Yazım hatası olmasın diye Constants dosyasında mainSymbol isimli bir değişken yarattık. Kullanıcı istediği coini ordan da değiştirebilir.
+        WebService().loadPrice(mainCoin: K.mainSymbol) { result in
             if result != nil {
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
