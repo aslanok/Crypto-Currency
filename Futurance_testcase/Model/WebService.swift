@@ -7,9 +7,10 @@
 
 import Foundation
 
-struct ApiService {
+//gerekli api işlemleri burda yapılıyor
+struct WebService {
     
-    func loadPrice(baseSymbol: String, completion: @escaping ([CurrencyModel]?) -> ()) {
+    func loadPrice(mainCoin: String, completion: @escaping ([CurrencyModel]?) -> ()) {
         currencyData.removeAll()
         let url = URL(string: K.binanceURL)
         URLSession.shared.dataTask(with: url!) { data, response, error in
@@ -17,13 +18,13 @@ struct ApiService {
             do {
                 let btcArr =  try JSONDecoder().decode([Response].self, from: data)
                 //print("Aldığımız veri : \(btcArr)")
-                for item in btcArr.filter({ $0.symbol.suffix(baseSymbol.count) == baseSymbol }) {
+                for item in btcArr.filter({ $0.symbol.suffix(mainCoin.count) == mainCoin }) {
                     //print(item)
                     DispatchQueue.main.async {
                         let coinPriceChange = item.priceChangePercent
                         let price = item.lastPrice
-                        let firstName = item.symbol.prefix(item.symbol.count - baseSymbol.count)
-                        let combineName = "\(firstName)/\(baseSymbol)"
+                        let firstName = item.symbol.prefix(item.symbol.count - mainCoin.count)
+                        let combineName = "\(firstName)/\(mainCoin)"
                         let lowerPrice = item.lowPrice
                         let higherPrice = item.highPrice
                         let curr = CurrencyModel(name: String(combineName), price: price, lowPrice: lowerPrice, highPrice: higherPrice, soloCoinName: String(firstName) , coinPriceChange: coinPriceChange)

@@ -9,19 +9,20 @@ import UIKit
 
 
 class ViewController: UIViewController, UITextFieldDelegate {
-    var totalfor5decimal : Double = 0.0 //bu değişkene bakılcak
+    var totalfor5decimal : Double = 0.0 //bu değişken didSelectRowAt fonksiyonu kullanılırken 24h high/low label'ını düzenlemek için kullanıldı.
     var alinanCoinMiktari : Double = 0.0
-    var newbakiyeString : String = ""
-    @IBOutlet weak var bakiyeLabel: UILabel!
-    @IBOutlet weak var coinAlButton: UIButton!
-    @IBOutlet var window: UIView!
-    var total : String = ""
+    var newbakiyeString : String = "" // bakiye stringine ekleme yapmak için bu değişkene yeni coinler atandı
+    var total : String = "" //total coin fiyati için kullandık
     var bakiyeString : String = ""
-    var myWallet : [String : Double] = ["TRY" : 2000.0]
-    var currentCoinPrice : Double = 1
-    var currentCoinName : String = ""
-    var alEtkili = true
+    var myWallet : [String : Double] = ["TRY" : 2000.0] //her coin miktarını tutmak için dict yapısı kullanıldı
+    var currentCoinPrice : Double = 1 //tableviewden tıklanan/seçilen coin fiyatını tutuyor
+    var currentCoinName : String = "" //tableviewden tıklanan/seçilen coin adını tutuyor
+    var alEtkili = true //al sat butonundan hangisi aktif onu belirlemek için kullanıldı
     
+    
+    @IBOutlet weak var bakiyeLabel: UILabel!
+    @IBOutlet weak var coinAlButton: UIButton! //ekranın en altında bulunan coin alım satım işlemlerini yaptığımız button
+    @IBOutlet var window: UIView!
     @IBOutlet weak var miktarLabeli: UILabel!
     @IBOutlet weak var totalTextField: UITextField!
     @IBOutlet weak var coinMiktarTextField: UITextField!
@@ -60,7 +61,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func getData() {
-        ApiService().loadPrice(baseSymbol: appSetting.baseSymbol) { result in
+        // kullanıcı istediği coini burda mainCoin yapabilir
+        WebService().loadPrice(mainCoin: "TRY") { result in
             if result != nil {
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
@@ -69,6 +71,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    //anlık coin miktarı değişimlerinde hesaplamalar yapılıp total kısmında gösteriliyor
     @IBAction func editChange(_ sender: UITextField){
         
         if sender.text == "" {
@@ -99,6 +102,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         coinAlButton.setTitle("\(currentCoinName) SAT", for: UIControl.State.normal)
     }
     
+    //Coin alma satma işlemleri için kullanılan ekranın en aşağısındaki butona tıklanınca tetiklenen işlemler
     @IBAction func coinAlButtonTapped(_ sender: UIButton) {
         if alEtkili == true {
             if let alinanCoinTutari = Double(totalTextField.text!) {
@@ -110,27 +114,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     if currentCoinName == "" {
                         uyariVer(mesaj: "Coin Seçmediniz")
                     }else {
-                        /*
-                        for (name) in myWallet.keys {
-                            if currentCoinName == name {
-                                myWallet[name]! += alinanCoinTutari
-                                myWallet["TRY"] = myWallet["TRY"]! - alinanCoinTutari
-                            }else {
-                                myWallet[currentCoinName] = alinanCoinTutari
-                                myWallet["TRY"] = myWallet["TRY"]! - alinanCoinTutari
-                            }
-                        }
-                         */
-                        //print("alıyoruz")
-                        //print(alinanCoinTutari)
                         if myWallet.keys.contains(currentCoinName){
                             myWallet[currentCoinName] = myWallet[currentCoinName]! + Double(coinMiktarTextField.text!)!
                             myWallet["TRY"] = myWallet["TRY"]! - alinanCoinTutari
-                            myWallet["TRY"] = Double(round(10000*myWallet["TRY"]!)/10000)
+                            myWallet["TRY"] = (round(10000*myWallet["TRY"]!)/10000)
                         }else {
                             myWallet[currentCoinName] = Double(coinMiktarTextField.text!)
                             myWallet["TRY"] = myWallet["TRY"]! - alinanCoinTutari
-                            myWallet["TRY"] = Double(round(10000 * myWallet["TRY"]!)/10000)
+                            myWallet["TRY"] = (round(10000 * myWallet["TRY"]!)/10000)
                         }
                         // ALTTAKİ SATIR EĞER SON İŞLEM BAKİYE OLARAK GÖZÜKECEKSE AKTİF HALE GELECEK
                         //bakiyeLabel.text = "\(coinMiktarTextField.text!) \(currentCoinName), \(alinanCoinTutari) TRY  "
@@ -138,7 +129,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 }
             }
             // Aşağıdaki Satırlar eğer ki cüzdan toplam bakiyesi istenirse aktif hale gelecek
-            
             bakiyeString = ""
             for (coin, price) in myWallet {
                 newbakiyeString = "\(price) \(coin) "
@@ -153,32 +143,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 alinanCoinMiktari = alinanMiktar
             }
             if let alinanCoinTutari = Double(totalTextField.text!) {
-                //myWallet[currentCoinName] = alinanCoinTutari
-                /*
-                 if myWallet.keys.contains(currentCoinName){
-                     myWallet[currentCoinName] = myWallet[currentCoinName]! + Double(coinMiktarTextField.text!)!
-                     myWallet["TRY"] = myWallet["TRY"]! - alinanCoinTutari
-                     myWallet["TRY"] = (myWallet["TRY"]! * 100000) / 100000
-                 }else {
-                     myWallet[currentCoinName] = Double(coinMiktarTextField.text!)
-                     myWallet["TRY"] = myWallet["TRY"]! - alinanCoinTutari
-                     myWallet["TRY"] = (myWallet["TRY"]! * 100000) / 100000
-                 }
-                 */
                 if myWallet.keys.contains(currentCoinName) {
                     if myWallet[currentCoinName]! < alinanCoinMiktari {
                         uyariVer(mesaj: "Satmaya çalıştığınız coin sayısı bakiyenizde bulunmuyor.Daha az coin satmayı deneyiniz")
                     }else {
                         myWallet[currentCoinName] = myWallet[currentCoinName]! - Double(coinMiktarTextField.text!)!
                         myWallet["TRY"] = myWallet["TRY"]! + alinanCoinTutari
+                        myWallet["TRY"] = (round(10000 * myWallet["TRY"]!)/10000)
                     }
                 } else {
                     uyariVer(mesaj: "Bakiyenizde bu coin bulunmamaktadır. Satmak için önce coin'i satın almalısınız.")
                 }
-                
-                //myWallet["TRY"] = myWallet["TRY"]! + alinanCoinTutari
             }
-            //bakiyeLabel.text = "\(myWallet["TRY"]!) TRY"
             bakiyeString = ""
             for (coin, price) in myWallet {
                 if price == 0 {
@@ -187,14 +163,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     newbakiyeString = "\(price) \(coin) "
                     bakiyeString.append(contentsOf: newbakiyeString)
                 }
-                /*
-                newbakiyeString = "\(price) \(coin) "
-                bakiyeString.append(contentsOf: newbakiyeString)
-                 */
             }
             bakiyeLabel.text = bakiyeString
-            print("Bakiye Stringi : \(bakiyeString)")
-            print("*****")
         }
     }
     

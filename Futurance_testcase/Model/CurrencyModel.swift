@@ -16,4 +16,5 @@ struct CurrencyModel {
     var coinPriceChange : String
 }
 
+//apiden dönen arraydeki elemanları kaydetmek için bi array oluşturduk ve bu arrayi de apiService içinde kullandık
 var currencyData : [CurrencyModel] = []

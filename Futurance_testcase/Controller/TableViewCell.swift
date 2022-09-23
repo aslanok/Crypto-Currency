@@ -27,6 +27,7 @@ class TableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    // apiden dönen coinlerin düzenini burda yapıyoruz
     func setup(with currency : CurrencyModel) {
         
         if let coinChangingPrice = Double(currency.coinPriceChange) {
