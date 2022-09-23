@@ -25,7 +25,7 @@ extension UIView {
         UIView.animateKeyframes(withDuration: changeTime, delay: 0.0, options: UIView.KeyframeAnimationOptions.init(rawValue: curve), animations: {
             self.frame.origin.y += diffY
         }, completion: nil)
-        
-        
     }
+    
+    
 }

@@ -9,7 +9,7 @@ import UIKit
 
 
 class ViewController: UIViewController, UITextFieldDelegate {
-    
+    var alinanCoinMiktari : Double = 0.0
     var newbakiyeString : String = ""
     @IBOutlet weak var bakiyeLabel: UILabel!
     @IBOutlet weak var coinAlButton: UIButton!
@@ -41,7 +41,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         tableView.showsVerticalScrollIndicator = false
         window.keyboardSlide()
         getData()
-        
     }
     
     @objc func closeKeyboard() {
@@ -127,11 +126,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         if myWallet.keys.contains(currentCoinName){
                             myWallet[currentCoinName] = myWallet[currentCoinName]! + Double(coinMiktarTextField.text!)!
                             myWallet["TRY"] = myWallet["TRY"]! - alinanCoinTutari
-                            myWallet["TRY"] = (myWallet["TRY"]! * 100000) / 100000
                         }else {
                             myWallet[currentCoinName] = Double(coinMiktarTextField.text!)
                             myWallet["TRY"] = myWallet["TRY"]! - alinanCoinTutari
-                            myWallet["TRY"] = (myWallet["TRY"]! * 100000) / 100000
                         }
                         // ALTTAKİ SATIR EĞER SON İŞLEM BAKİYE OLARAK GÖZÜKECEKSE AKTİF HALE GELECEK
                         //bakiyeLabel.text = "\(coinMiktarTextField.text!) \(currentCoinName), \(alinanCoinTutari) TRY  "
@@ -150,6 +147,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
             print("*****")
         }
         else if alEtkili == false {
+            if let alinanMiktar = Double(coinMiktarTextField.text!) {
+                alinanCoinMiktari = alinanMiktar
+            }
             if let alinanCoinTutari = Double(totalTextField.text!) {
                 //myWallet[currentCoinName] = alinanCoinTutari
                 /*
@@ -164,8 +164,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
                  }
                  */
                 if myWallet.keys.contains(currentCoinName) {
-                    myWallet[currentCoinName] = myWallet[currentCoinName]! - Double(coinMiktarTextField.text!)!
-                    myWallet["TRY"] = myWallet["TRY"]! + alinanCoinTutari
+                    if myWallet[currentCoinName]! < alinanCoinMiktari {
+                        uyariVer(mesaj: "Satmaya çalıştığınız coin sayısı bakiyenizde bulunmuyor.Daha az coin satmayı deneyiniz")
+                    }else {
+                        myWallet[currentCoinName] = myWallet[currentCoinName]! - Double(coinMiktarTextField.text!)!
+                        myWallet["TRY"] = myWallet["TRY"]! + alinanCoinTutari
+                    }
                 } else {
                     uyariVer(mesaj: "Bakiyenizde bu coin bulunmamaktadır. Satmak için önce coin'i satın almalısınız.")
                 }
@@ -192,17 +196,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    
-    func uyariVer(mesaj : String) {
-            let uyariMesaji : UIAlertController = UIAlertController(title: "Uyarı Mesajı!", message: mesaj, preferredStyle: UIAlertController.Style.alert)
-            let okButton : UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) { UIAlertAction in
-                print("ok butonuna tıklandı")
-            }
-            
-            uyariMesaji.addAction(okButton)
-            // burda kullaniciya uyari mesajı sunduk, animasyonlu mu olsun evet, tamamlanınca bir şey olsun mu hayır olmasın
-            self.present(uyariMesaji, animated: true, completion: nil)
-        }
 }
 
 

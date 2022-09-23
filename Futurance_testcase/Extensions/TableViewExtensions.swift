@@ -1,5 +1,5 @@
 //
-//  TableViewExtension.swift
+//  TableViewExtensions.swift
 //  Futurance_testcase
 //
 //  Created by MacBook on 22.09.2022.

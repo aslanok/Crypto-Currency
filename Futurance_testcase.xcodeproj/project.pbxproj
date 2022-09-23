@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		FA3E0F8B28DCB7E700C93A14 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3E0F8A28DCB7E700C93A14 /* Constants.swift */; };
-		FA6991C028DC2CA90023FDE1 /* TableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6991BF28DC2CA90023FDE1 /* TableViewExtension.swift */; };
+		FA3E0F9128DCDAD800C93A14 /* TableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3E0F9028DCDAD800C93A14 /* TableViewExtensions.swift */; };
+		FA6991C028DC2CA90023FDE1 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6991BF28DC2CA90023FDE1 /* ViewControllerExtension.swift */; };
 		FA8FF2E628D9F0990047B76C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8FF2E528D9F0990047B76C /* AppDelegate.swift */; };
 		FA8FF2E828D9F0990047B76C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8FF2E728D9F0990047B76C /* SceneDelegate.swift */; };
 		FA8FF2EA28D9F0990047B76C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8FF2E928D9F0990047B76C /* ViewController.swift */; };
@@ -45,7 +46,8 @@
 
 /* Begin PBXFileReference section */
 		FA3E0F8A28DCB7E700C93A14 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		FA6991BF28DC2CA90023FDE1 /* TableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewExtension.swift; sourceTree = "<group>"; };
+		FA3E0F9028DCDAD800C93A14 /* TableViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewExtensions.swift; sourceTree = "<group>"; };
+		FA6991BF28DC2CA90023FDE1 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		FA8FF2E228D9F0990047B76C /* Futurance_testcase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Futurance_testcase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA8FF2E528D9F0990047B76C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA8FF2E728D9F0990047B76C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,8 +98,9 @@
 			isa = PBXGroup;
 			children = (
 				FAD5CD5A28DB1DF500FFFB99 /* UIViewExtension.swift */,
-				FA6991BF28DC2CA90023FDE1 /* TableViewExtension.swift */,
+				FA6991BF28DC2CA90023FDE1 /* ViewControllerExtension.swift */,
 				FA3E0F8A28DCB7E700C93A14 /* Constants.swift */,
+				FA3E0F9028DCDAD800C93A14 /* TableViewExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -319,12 +322,13 @@
 				FA8FF2EA28D9F0990047B76C /* ViewController.swift in Sources */,
 				FA8FF32028DA4CDB0047B76C /* AppSetting.swift in Sources */,
 				FA8FF2E628D9F0990047B76C /* AppDelegate.swift in Sources */,
-				FA6991C028DC2CA90023FDE1 /* TableViewExtension.swift in Sources */,
+				FA6991C028DC2CA90023FDE1 /* ViewControllerExtension.swift in Sources */,
 				FA8FF2E828D9F0990047B76C /* SceneDelegate.swift in Sources */,
 				FA8FF32628DA5F590047B76C /* TableViewCell.swift in Sources */,
 				FA8FF31C28DA48990047B76C /* CurrencyModel.swift in Sources */,
 				FA8FF32228DA4D680047B76C /* ApiService.swift in Sources */,
 				FA3E0F8B28DCB7E700C93A14 /* Constants.swift in Sources */,
+				FA3E0F9128DCDAD800C93A14 /* TableViewExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
