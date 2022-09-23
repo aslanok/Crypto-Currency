@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ApiService {
+struct ApiService {
     
     func loadPrice(baseSymbol: String, completion: @escaping ([CurrencyModel]?) -> ()) {
         currencyData.removeAll()

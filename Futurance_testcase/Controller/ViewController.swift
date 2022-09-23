@@ -37,9 +37,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         tableView.delegate = self
         tableView.dataSource = self
         coinMiktarTextField.delegate = self
-        
-        tableView.separatorStyle = .none
-        tableView.showsVerticalScrollIndicator = false
         window.keyboardSlide()
         getData()
     }
@@ -49,6 +46,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func girisAyarları(){
+        tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
         miktarLabeli.textColor = .darkGray
         totalTextField.isUserInteractionEnabled = false
         coinAlButton.backgroundColor = K.greenColor
